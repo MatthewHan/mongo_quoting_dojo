@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quoting Dojo</title>
+    <link rel="stylesheet" href="/css/style.css">
+     <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- Bootstrap specific javascript functions -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script type = "text/javascript">
+        console.log(data);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="well well-sm">
+                    <form action = "/quotes" class="form-horizontal" method="post">
+                        <fieldset>
+                            <legend class="text-center header">Welcome to Quoting Dojo</legend>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-1 text-center"></span>
+                                <div class="col-md-8">
+                                    <input id="name" name="name" type="text" placeholder="Name" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span class="col-md-1 col-md-offset-1 text-center"></span>
+                                <div class="col-md-8">
+                                    <textarea class="form-control" id="comment" name="comment" placeholder="Quote" rows="5"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg pull-left col-md-offset-2">Add my quote!</button>
+                                    <a href = "/quotes" class = "btn btn-info btn-lg col-md-offset-2">Skip to quotes!</a>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
