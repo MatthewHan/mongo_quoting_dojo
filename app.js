@@ -19,49 +19,40 @@ app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 // root route
 app.get('/', function(req, res) {
-	// This is where we would get the users from the database and send them to the index view to be displayed.
 	res.render('index');
 })
 
 app.get('/quotes', function(req, res) {
-	// This is where we would get the users from the database and send them to the index view to be displayed.
-	res.render('quotes');
+	Quote.find({}, function(err,quotes){
+		if(err){
+			console.log('something went wrong');
+		} else {
+			console.log(quotes);
+			res.render('quotes',{data:quotes});
+		}
+	})
 })
 
 var QuoteSchema = new mongoose.Schema({
 	name: String,
-	quote: String
+	quote: String,
+	created_on: { type: Date, default:Date.now }
 })
-
+var Quote = mongoose.model('Quote', QuoteSchema);
 app.post('/quotes', function(req,res){
 	console.log("POST DATA", req.body);
+	var quote = new Quote({name: req.body.name, quote: req.body.quote});
+
+	quote.save(function(err){
+		if(err){
+			console.log('something went wrong');
+		} else {
+			console.log('quote successfully added');
+			res.redirect('quotes');
+		}
+	}) 
 })
 // listen on 8000
 app.listen(8000, function() {
  console.log("listening on port 8000");
 })
-
-
-
-// var UserSchema = new mongoose.Schema({
-// 	name: String,
-// 	age: Number
-// })
-// var User = mongoose.model('User', UserSchema);
-
-// // route to add a user
-// app.post('/users', function(req, res) {
-//   console.log("POST DATA", req.body);
-//   // create a new User with the name and age corresponding to those from req.body
-//   var user = new User({name: req.body.name, age: req.body.age});
-//   // try to save that new user to the database (this is the method that actually inserts into the db) and run a callback function with an error (if any) from the operation.
-//   user.save(function(err) {
-//     // if there is an error console.log that something went wrong!
-//     if(err) {
-//       console.log('something went wrong');
-//     } else { // else console.log that we did well and then redirect to the root route
-//       console.log('successfully added a user!');
-//       res.redirect('/');
-//     }
-//   })
-// })

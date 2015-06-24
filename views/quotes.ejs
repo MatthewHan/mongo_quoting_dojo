@@ -3,8 +3,47 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Quotes</title>
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
+    <!-- jQuery -->
+    <script src="/js/jquery.min.js"></script>
+    <!-- Bootstrap specific javascript functions -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script type = "text/javascript">
+        console.log(data);
+    </script>
 </head>
 <body>
-	
+	<div class="container">
+	    <div class="col-md-8 col-md-offset-2">
+		    <div class="well">
+		        <h4>Here are some lame quotes</h4>
+		    <hr data-brackets-id="12673">
+		    <ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
+		    	<% for(var i=0; i < data.length; i++) { %>
+		        </br>
+		        <li class="ui-state-default">"<%= data[i].quote %>"</li>
+		        <div class="col-xs-12">
+		        	<strong class="primary-font col-md-offset-2">-<%= data[i].name %></strong>
+			        <% function formatDate(date) {
+						var hours = date.getHours();
+						var minutes = date.getMinutes();
+						var ampm = hours >= 12 ? 'pm' : 'am';
+						hours = hours % 12;
+						hours = hours ? hours : 12; // the hour '0' should be '12'
+						minutes = minutes < 10 ? '0'+minutes : minutes;
+						var strTime = hours + ':' + minutes + ' ' + ampm;
+						return strTime + " on " + date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear();
+					} %>
+			        <% date = formatDate(data[i].created_on); %>
+			        <small class="text-muted"> at <%= date %></small>
+		        </div>
+		        <% } %>
+		    </ul>
+		    </div>
+		</div>
+	</div>
 </body>
 </html>
